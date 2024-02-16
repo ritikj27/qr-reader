@@ -9,7 +9,7 @@ const NewApp = (props) => {
 
   return (
     <>
-    <h1>Test 2</h1>
+    <h1>Test 3</h1>
       <QrReader
         scanDelay={300}
         constraints={{
@@ -20,7 +20,7 @@ const NewApp = (props) => {
           width: { min: 480, ideal: 720, max: 1280 },
         }}
         onResult={(result, error) => {
-          if (!!result) {
+          if (result) {
             setData(result?.text);
             const scannedText = result.getText();
             if (part.includes(scannedText)) {
