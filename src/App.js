@@ -9,6 +9,7 @@ const App = (props) => {
 
   return (
     <>
+      <h2>hello world</h2>
       {/* <QrReader scanDelay={300} constraints={{
         facingMode: "user"
       }}
