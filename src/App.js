@@ -7,6 +7,14 @@ const App = (props) => {
   return (
     <>
       <QrReader
+         scanDelay={300}
+         constraints={{
+           aspectRatio: "1",
+           facingMode: {
+             exact: "environment"
+           },
+           width: { min: 480, ideal: 720, max: 1280 },
+         }}
         onResult={(result, error) => {
           if (!!result) {
             setData(result?.text);
