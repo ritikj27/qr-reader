@@ -45,7 +45,8 @@
 // export default App;
 
 import React, {useState} from 'react'
-import QrScan from 'react-qr-reader'
+// import QrScan from 'react-qr-reader'
+import { QrReader } from "react-qr-reader";
 
 function QRscanner() {
 
@@ -66,7 +67,7 @@ function QRscanner() {
 
             <center>
             <div style={{marginTop:30}}>
-                <QrScan
+                <QrReader
                     delay={300}
                     onError={handleError}
                     onScan={handleScan}
