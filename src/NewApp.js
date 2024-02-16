@@ -9,7 +9,7 @@ const NewApp = (props) => {
 
   return (
     <>
-    <h1>Test 3</h1>
+    <h1>Test 4</h1>
       <QrReader
         scanDelay={300}
         constraints={{
