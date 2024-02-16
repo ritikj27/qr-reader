@@ -111,7 +111,8 @@ const App = (props) => {
 
   const handleScan = (result) => {
     if (result) {
-      const scannedText = result.text; // Extracting the scanned text from the result object
+      const scannedText = result?.text; // Extracting the scanned text from the result object
+      setScannedData(scannedText);
       if (part.includes(scannedText)) {
         alert(`Duplicate QR code. Please scan a unique QR code.`);
       } else {
@@ -128,6 +129,7 @@ const App = (props) => {
 
   return (
     <>
+    <h1>test 1</h1>
       <QrReader
         scanDelay={300}
         constraints={{
