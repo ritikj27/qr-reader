@@ -1,52 +1,60 @@
-import React, { useState } from 'react';
-import { QrReader } from 'react-qr-reader';
+import React, { useState } from "react";
+import { QrReader } from "react-qr-reader";
 
-const App = (props) => {
-  const [data, setData] = useState('No result');
+const NewApp = (props) => {
+  const [data, setData] = useState("No result");
+  const [scannedData, setScannedData] = useState("");
+  const [part, setPart] = useState([]);
+  const [isScanModal, setIsScanModal] = useState(false);
 
   return (
     <>
+    <h1>Test 2</h1>
       <QrReader
-         scanDelay={300}
-         constraints={{
-           aspectRatio: "1",
-           facingMode: {
-             exact: "environment"
-           },
-           width: { min: 480, ideal: 720, max: 1280 },
-         }}
+        scanDelay={300}
+        constraints={{
+          aspectRatio: "1",
+          facingMode: {
+            exact: "environment",
+          },
+          width: { min: 480, ideal: 720, max: 1280 },
+        }}
         onResult={(result, error) => {
           if (!!result) {
             setData(result?.text);
+            const scannedText = result.getText();
+            if (part.includes(scannedText)) {
+              alert(`Duplicate QR code. Please scan a unique QR code.`);
+            } else {
+            //   setPart([...part, scannedText]);
+            //   form.setFieldsValue({
+            //     partId: scannedText,
+            //   });
+            //   setIsScanModal(!isScanModal);
+
+            setScannedData(scannedText);
+            setPart([...part, scannedText]);
+            setIsScanModal(!isScanModal);
+            }
           }
 
           if (!!error) {
             console.info(error);
           }
         }}
-        style={{ width: '100%' }}
+        style={{ width: "100%" }}
       />
       <p>{data}</p>
+      <p>Scanned Data: {scannedData}</p>
+      <ul>
+        {part.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </>
   );
 };
-export default App
-
-
-
-// if (result) {
-
-//   const scannedText = result.getText();
-//   if (part.includes(scannedText)) {
-//     alert(`Duplicate QR code. Please scan a unique QR code.`);
-//   } else {
-//     setPart([...part,scannedText]);
-//     form.setFieldsValue({
-//               partId: scannedText
-//             });
-//     setIsScanModal(!isScanModal);
-//   }
-// }
+export default NewApp;
 
 // import React, { useState } from 'react';
 // import { QrReader } from 'react-qr-reader';
@@ -55,10 +63,11 @@ export default App
 //   const [scannedData, setScannedData] = useState('');
 //   const [part, setPart] = useState([]);
 //   const [isScanModal, setIsScanModal] = useState(false);
-//   // const  [data,setData]
+
 //   const handleScan = (result) => {
 //     if (result) {
-//       const scannedText = result;
+//       const scannedText = result?.text; // Extracting the scanned text from the result object
+//       setScannedData(scannedText);
 //       if (part.includes(scannedText)) {
 //         alert(`Duplicate QR code. Please scan a unique QR code.`);
 //       } else {
@@ -75,6 +84,7 @@ export default App
 
 //   return (
 //     <>
+//     <h1>test 1</h1>
 //       <QrReader
 //         scanDelay={300}
 //         constraints={{
@@ -99,4 +109,3 @@ export default App
 // };
 
 // export default App;
-
